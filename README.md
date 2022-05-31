@@ -5,7 +5,15 @@ Gracias tanto a los comentarios del código como a los errores que devuelve cada
 
 ## Segunda Entrega:
 
--Me hubiese encantado tener tiempo para hacer el FrontEnd también. Hasta me parece más divertido testearlo así. Pero bueno me até a lo obligatorio y dejé lo opcional por razones de fuerza mayor.
+-El .env no lo agregué al .gitignore sólo por una cuestión práctica a la hora de la corrección. Obviamente no debería subirse a git en realidad.
+
+-En src/daos/daos.js se exportan los DAOS según lo especificado en el .env dónde se puede elegir si se quiere operar utilizando contenedores de archivo, de MongoDB o de Firebase.
+
+-Para el seteo del contenedor Firebase me pareció más práctico que el contenido del json de auth sea directamente una variable de entorno y no tener que andar importando files externos. Aunque es un esquema que puede modificarse llegado el caso.
+
+-Los json que devuelve cada router (API rest) siempre son iguales, independientemente del tipo de contenedor seleccionado.
+
+-Me hubiese encantado tener tiempo para hacer el FrontEnd también. Hasta me parece más divertido testearlo así. Pero bueno me até a lo obligatorio y dejé de lado lo opcional por razones de fuerza mayor.
 
 
 ## Primera Entrega:

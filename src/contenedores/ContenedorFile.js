@@ -125,16 +125,16 @@ class ContenedorFile {
     /*
     async deleteAll() { //: void - Elimina todos los objetos presentes en el archivo.
         try {
+            const list = JSON.parse(await promises.readFile(this.archivo, 'utf-8'))
             await promises.writeFile(this.archivo, JSON.stringify([]))
-            console.log('Se ha vaciado el file:', this.archivo);
-            return true
+            return list.length
 
         } catch (error) {
             return false
         }
     }
     */
-   
+
     async editById(id, obj) {
 
         if (await this.getById(id)) {

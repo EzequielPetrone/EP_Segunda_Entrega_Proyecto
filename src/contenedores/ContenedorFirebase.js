@@ -3,10 +3,8 @@ import 'dotenv/config' // Para poder usar las variables de entorno directamente.
 //Importo administrador de Firebase
 import admin from "firebase-admin";
 
-//console.log(admin.firestore.FieldValue.serverTimestamp());
-
-
 //Por cuestiones prácticas me guardé el contenido del json de Firebase como variable de entorno
+//y claro tengo que parsear antes de pasarla como credencial
 const serviceAccount = JSON.parse(process.env.FIREBASE_JSON)
 
 //Inicializo conexión a mi Firebase App
@@ -37,7 +35,7 @@ class ContenedorFirebase {
             return result.docs.map(doc => formatDoc(doc))
 
         } catch (error) {
-            console.log(`Error al querer leer el contenido de la colección ${this.coll}.`, error)
+            console.log(`Error al querer leer el contenido de la colección ${this.coll.id}.`, error)
             return null
         }
     }
@@ -48,7 +46,7 @@ class ContenedorFirebase {
             return result.id
 
         } catch (error) {
-            console.log(`Pasaron cosas al guardar nuevo objeto en la colección ${this.coll}.`, error);
+            console.log(`Pasaron cosas al guardar nuevo objeto en la colección ${this.coll.id}.`, error);
             return null
         }
     }
@@ -59,7 +57,7 @@ class ContenedorFirebase {
             return formatDoc(result)
 
         } catch (error) {
-            console.log(`Error al obtener objeto con id ${id} de la colección ${this.coll}.`, error);
+            console.log(`Error al obtener objeto con id ${id} de la colección ${this.coll.id}.`, error);
             return null
         }
     }
@@ -73,7 +71,7 @@ class ContenedorFirebase {
                 return false
             }
         } catch (error) {
-            console.log(`Error al eliminar objeto con id ${id} de la colección ${this.coll}.`, error);
+            console.log(`Error al eliminar objeto con id ${id} de la colección ${this.coll.id}.`, error);
             return null
         }
     }
@@ -81,9 +79,9 @@ class ContenedorFirebase {
     /*
     async deleteAll() { //: void - Elimina todos los objetos presentes en el archivo.
         try {
-            // return await this.db(this.table).del()
-            const result = await this.model.deleteMany({})
-            return result.deletedCount
+            const result = await this.coll.get()
+            await this.coll.doc().delete()
+            return result.docs.length
             //Esto devuelve la qty de registros eliminados
 
         } catch (error) {
@@ -92,7 +90,7 @@ class ContenedorFirebase {
         }
     }
     */
-
+   
     async editById(id, obj) {
         try {
             if (await this.getById(id)) {
@@ -102,7 +100,7 @@ class ContenedorFirebase {
                 return false
             }
         } catch (error) {
-            console.log(`Error al editar objeto con id ${id} de la colección ${this.coll}.`, error);
+            console.log(`Error al editar objeto con id ${id} de la colección ${this.coll.id}.`, error);
             return null
         }
     }

@@ -1,25 +1,10 @@
-//Importo clases Contenedoras e instancio.
-import { ProductosDaoFile } from '../daos/productos/ProductosDaoFile.js';
-import { CarritosDaoFile } from '../daos/carritos/CarritosDaoFile.js';
-
-import { ProductosDaoMongo } from '../daos/productos/ProductosDaoMongo.js';
-import { CarritosDaoMongo } from '../daos/carritos/CarritosDaoMongo.js';
-
-import { ProductosDaoFirebase } from '../daos/productos/ProductosDaoFirebase.js';
-import { CarritosDaoFirebase } from '../daos/carritos/CarritosDaoFirebase.js';
-
-//const contenedorProductos = new ProductosDaoFile()
-//const contenedorCarritos = new CarritosDaoFile()
-
-// const contenedorProductos = new ProductosDaoMongo()
-// const contenedorCarritos = new CarritosDaoMongo()
-
-const contenedorProductos = new ProductosDaoFirebase()
-const contenedorCarritos = new CarritosDaoFirebase()
+//Importo DAOS e instancio. 
+import { ProductosDao, CarritosDao } from '../daos/daos.js';
+const contenedorProductos = new ProductosDao()
+const contenedorCarritos = new CarritosDao()
 
 //Importo express y configuro Routers
-import express, { json, urlencoded } from "express";
-const { Router } = express
+import { Router, json, urlencoded } from "express";
 const routerCarrito = Router()
 
 //Configuro para poder leer sin problemas los req.body
@@ -65,7 +50,7 @@ routerCarrito.delete("/:id", async (req, res) => {
                 await contenedorProductos.actualizarStock(p.id, p.stock)
             }
             await contenedorCarritos.deleteById(id)
-            res.json({ ok: `Eliminado del file carrito con id ${id}` })
+            res.json({ ok: `Eliminado carrito con id ${id}` })
 
         } else {
             errCode = -8

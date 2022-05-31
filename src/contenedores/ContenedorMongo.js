@@ -8,7 +8,8 @@ const formatDoc = (doc) => {
     if (doc) {
         const item = {
             id: doc._doc._id,
-            timeStamp: doc._doc._id.getTimestamp(),
+            // timeStamp: doc._doc._id.getTimestamp(), //Al principio usaba el timeStamp embebido en el _id
+            timeStamp: Date.now(), //Pero luego decidí estandarizar el timeStamp de los 3 tipos de contenedores
             ...doc._doc
         }
         delete item._id
@@ -33,7 +34,6 @@ class ContenedorMongo {
     async getAll() { //return Object[] - Devuelve un array con los objetos presentes en el archivo.
         try {
             const result = await this.model.find({}, { __v: 0 })
-
             return result.map(doc => formatDoc(doc))
 
         } catch (error) {
@@ -79,7 +79,6 @@ class ContenedorMongo {
     /*
     async deleteAll() { //: void - Elimina todos los objetos presentes en el archivo.
         try {
-            // return await this.db(this.table).del()
             const result = await this.model.deleteMany({})
             return result.deletedCount
             //Esto devuelve la qty de registros eliminados
@@ -93,7 +92,7 @@ class ContenedorMongo {
 
     async editById(id, obj) {
         try {
-            return await this.model.findByIdAndUpdate(id,obj) ? true : false
+            return await this.model.findByIdAndUpdate(id, obj) ? true : false
 
         } catch (error) {
             console.log(`Error al editar objeto con id ${id} de la colección ${this.model.modelName}.`, error);

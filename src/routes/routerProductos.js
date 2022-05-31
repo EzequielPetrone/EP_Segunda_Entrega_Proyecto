@@ -1,30 +1,16 @@
 //Constante booleana hardcodeada que emula si el user es ADMIN o no (luego se reemplaza por lógica de login)
 const ADMIN = true
 
-//Importo clases Contenedoras e instancio. También una fx de utilidad
+//Importo DAOS e instancio. 
+import { ProductosDao, CarritosDao } from '../daos/daos.js';
+const contenedorProductos = new ProductosDao()
+const contenedorCarritos = new CarritosDao()
+
+// Importo fx de utilidad
 import { isProducto } from '../utils/utils.js';
 
-import { ProductosDaoFile } from '../daos/productos/ProductosDaoFile.js';
-import { CarritosDaoFile } from '../daos/carritos/CarritosDaoFile.js';
-
-import { ProductosDaoMongo } from '../daos/productos/ProductosDaoMongo.js';
-import { CarritosDaoMongo } from '../daos/carritos/CarritosDaoMongo.js';
-
-import { ProductosDaoFirebase } from '../daos/productos/ProductosDaoFirebase.js';
-import { CarritosDaoFirebase } from '../daos/carritos/CarritosDaoFirebase.js';
-
-//const contenedorProductos = new ProductosDaoFile()
-//const contenedorCarritos = new CarritosDaoFile()
-
-// const contenedorProductos = new ProductosDaoMongo()
-// const contenedorCarritos = new CarritosDaoMongo()
-
-const contenedorProductos = new ProductosDaoFirebase()
-const contenedorCarritos = new CarritosDaoFirebase()
-
 //Importo express y configuro Routers
-import express, { json, urlencoded } from "express";
-const { Router } = express
+import { Router, json, urlencoded } from "express";
 const routerProductos = Router()
 
 //Configuro para poder leer sin problemas los req.body
