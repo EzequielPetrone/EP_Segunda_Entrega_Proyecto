@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "timeStamp": 1651712604674,
+    "productos": [
+      {
+        "id": 2,
+        "timeStamp": 1651553398004,
+        "nombre": "Remera Clasic 2",
+        "descripcion": "Es una Remera estilo Clasic 2",
+        "codigo": "AF1234",
+        "thumbnail": "www.misimagenes.com/remera2",
+        "precio": 1200,
+        "stock": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "timeStamp": 1651724030213,
+    "productos": [
+      {
+        "id": 1,
+        "timeStamp": 1651553066801,
+        "nombre": "Remera Clasic EZE",
+        "descripcion": "Es una Remera estilo Clasic",
+        "codigo": "AF1237",
+        "thumbnail": "www.misimagenes.com/remera1",
+        "precio": 1200,
+        "stock": 4
+      },
+      {
+        "id": 5,
+        "timeStamp": 1651788772495,
+        "nombre": "Remera Clasic EZE lalala",
+        "descripcion": "Es una Remera estilo Clasic",
+        "codigo": "AF1237",
+        "thumbnail": "www.misimagenes.com/remera3",
+        "precio": 1200,
+        "stock": 3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "timeStamp": 1653857454168,
+    "productos": [
+      {
+        "id": 6,
+        "timeStamp": 1653857351520,
+        "nombre": "Remera Clasic EZE new",
+        "descripcion": "Es una Remera estilo Clasic 10",
+        "codigo": "AF1237",
+        "thumbnail": "www.misimagenes.com/remera10",
+        "precio": 1500,
+        "stock": 2
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "timeStamp": 1653859328746,
+    "productos": [
+      {
+        "id": 8,
+        "timeStamp": 1653859309203,
+        "nombre": "Remera Clasic DAO2",
+        "descripcion": "Es una Remera estilo Clasic 20",
+        "codigo": "AF1237",
+        "thumbnail": "www.misimagenes.com/remera20",
+        "precio": 1500,
+        "stock": 3
+      }
+    ]
+  }
+]
