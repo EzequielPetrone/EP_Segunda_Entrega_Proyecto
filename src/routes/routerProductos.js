@@ -81,7 +81,7 @@ routerProductos.put("/:id", async (req, res) => {
             //Primero valido que lo recibido en el body del request sea un producto bien formado
             //en mi definición el formato correcto sería: {nombre, descripcion, codigo, thumbnail, precio, stock}
             if (isProducto(req.body)) {
-                if (await contenedorProductos.editById(id, req.body)) { //Este método editById de la clase Contenedor es interesante su funcionalidad 
+                if (await contenedorProductos.editById(id, req.body)) { 
                     res.json(await contenedorProductos.getById(id))
                 } else {
                     errCode = -6

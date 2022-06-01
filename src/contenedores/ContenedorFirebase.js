@@ -42,7 +42,8 @@ class ContenedorFirebase {
 
     async save(obj) { //return Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
         try {
-            const result = await this.coll.add({ timeStamp: Date.now(), ...obj })
+            const item = { timeStamp: Date.now(), ...obj }
+            const result = await this.coll.add(item)
             return result.id
 
         } catch (error) {
@@ -90,10 +91,13 @@ class ContenedorFirebase {
         }
     }
     */
-   
+
     async editById(id, obj) {
         try {
-            if (await this.getById(id)) {
+            const item = await this.getById(id)
+            if (item) {
+                obj.timeStamp = item.timeStamp //Esto lo hago porque el .set() de Firebase pisa los objetos
+                delete obj.id // Para que no duplique dentro del objeto el id (ya que Firebase lo maneja aparte)
                 await this.coll.doc(id).set(obj)
                 return true
             } else {

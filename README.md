@@ -1,5 +1,7 @@
 # Backend - Segunda Entrega Parcial Proyecto - EZEQUIEL PETRONE
 
+(Al final de este doc hay ejemplos de los body que acepta cada endpoint)
+
 Gracias tanto a los comentarios del código como a los errores que devuelve cada endpoint es fácil entender el funcionamiento, de todos modos algunas notas:
 
 
@@ -31,3 +33,21 @@ Gracias tanto a los comentarios del código como a los errores que devuelve cada
 -Cuando se agrega un producto a un carrito se descuenta la qty seleccionada del stock del producto en el file de productos. SE VALIDA QUE HAYA STOCK SUFICIENTE ANTES DE HACER DICHA OPERACIÓN.
 
 -Cuando se elimina un producto de un carrito se devuelve la qty que poseía al stock del file de productos. Si se elimina un carrito entero, devuelve stock por cada uno de los productos incluídos.
+
+# ejemplo body POST / PUT de productos (router productos)
+
+{
+    "nombre": "Remera Vintage",
+    "descripcion": "Es una Remera Clasic Style",
+    "codigo": "RV123",
+    "thumbnail": "www.misimagenes.com/remeravintage",
+    "precio": 1900,
+    "stock": 50
+}
+
+# ejemplo body POST un producto dentro de un carrito (router carritos)
+
+{
+    "idProd": "18siW1imNGyOlkoa2vCq",
+    "qty": 10
+}

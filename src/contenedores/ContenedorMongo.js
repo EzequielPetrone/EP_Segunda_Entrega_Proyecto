@@ -9,7 +9,6 @@ const formatDoc = (doc) => {
         const item = {
             id: doc._doc._id,
             // timeStamp: doc._doc._id.getTimestamp(), //Al principio usaba el timeStamp embebido en el _id
-            timeStamp: Date.now(), //Pero luego decidí estandarizar el timeStamp de los 3 tipos de contenedores
             ...doc._doc
         }
         delete item._id
@@ -44,7 +43,8 @@ class ContenedorMongo {
 
     async save(obj) { //return Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
         try {
-            const result = await new this.model(obj).save();
+            const item = { timeStamp: Date.now(), ...obj }
+            const result = await new this.model(item).save();
             return result._id
 
         } catch (error) {
@@ -92,6 +92,7 @@ class ContenedorMongo {
 
     async editById(id, obj) {
         try {
+            delete obj.id // Para que no duplique dentro del objeto el id (ya que Mongo lo maneja aparte)
             return await this.model.findByIdAndUpdate(id, obj) ? true : false
 
         } catch (error) {
